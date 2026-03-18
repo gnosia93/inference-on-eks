@@ -6,7 +6,7 @@ variable "aws_region" {
 
 variable "cluster_name" {
   type        = string
-  default     = "infer-on-eks"
+  default     = "agentic-ai-eks"
 }
 
 variable "vpc_cidr_block" {
@@ -18,7 +18,7 @@ variable "vpc_cidr_block" {
 variable "x86_type" {
   description = "EC2 Instance Type (x86)"
   type        = string
-  default     = "c7i.2xlarge"
+  default     = "g7e.4xlarge"
 }
 
 variable "key_name" {
