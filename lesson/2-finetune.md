@@ -25,4 +25,4 @@ PPL 값이 낮을수록 좋다.
 
 
 ### 파인튜닝 ###
-* https://github.com/gnosia93/agentic-ai-eks/blob/main/code/finetune_qwen.py
+* https://github.com/gnosia93/agentic-ai-eks/blob/main/code/qwen_finetune.py
