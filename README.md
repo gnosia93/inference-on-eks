@@ -1,6 +1,6 @@
 * [1. 환경설정하기](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/1.start.md)
 
-* [2. 모델 파인튜닝하기](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/2-finetune.md)
+* [2. LLM 평가하기](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/2-llm-eval.md)
 
 3. RAG 붙이기 ...
 
@@ -14,6 +14,8 @@
 
 
 
+## 파인튜닝 ##
+* https://github.com/gnosia93/agentic-ai-eks/blob/main/code/qwen_finetune.py
 
 
 
