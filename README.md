@@ -1,14 +1,16 @@
-1. Qwen 모델 파인튜닝하기 ...
+[1. 환경설정하기](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/1.start.md)
 
-2. RAG 붙이기 ...
+2. Qwen 모델 파인튜닝하기 ...
 
-3. 배포 파이브라인 구성하기
+3. RAG 붙이기 ...
 
-4. EKS 크러스터 구성
+4. 배포 파이브라인 구성하기
 
-5. Nvidia Dyamo 설치
+5. EKS 크러스터 구성
 
-6. 모델 배포해 보기. 
+6. Nvidia Dyamo 설치
+
+7. 모델 배포해 보기. 
 
 
 
