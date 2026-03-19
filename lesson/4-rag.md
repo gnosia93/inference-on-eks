@@ -196,7 +196,7 @@ for name, reranker in rerankers.items():
 
 
 > [!NOTE]
-> ### Sparse 벡터 ###
+> #### Sparse 벡터 ####
 > Sparse 벡터는 대부분의 값이 0이고 일부만 값이 있는 벡터로, BM25나 TF-IDF 같은 키워드 기반 검색이 이 방식을 사용한다.
 > ```
 > 문서: "GPU OOM 해결 방법"
@@ -215,7 +215,7 @@ for name, reranker in rerankers.items():
 > * Dense: 의미 매칭에 강함 ("통신 느릴 때" → NCCL 관련 문서 검색)
 > 하이브리드 검색은 이 둘을 합쳐서 키워드 정확도 + 의미 이해를 동시에 적용하는 것. 
 >
-> ### BM25 ###
+> #### BM25 ####
 > BM25는 키워드 기반 검색 알고리즘으로, 핵심 아이디어는 두 가지이다.
 > * TF (Term Frequency): 검색어가 문서에 많이 나올수록 관련성 높음
 > * IDF (Inverse Document Frequency): 전체 문서에서 드물게 나오는 단어일수록 중요
