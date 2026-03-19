@@ -26,9 +26,6 @@
    - LLM-as-Judge 비동기 평가
 
 * [8. 평가 파이프라인 구성하기](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/8.eval-framework.md)
-   - RAGAS 프레임워크
-   - 도메인 평가 데이터셋 구축
-   - CI/CD에 평가 통합
 
 * [9. 로컬 Docker 배포하기]
     - Docker Compose (FastAPI + vLLM + VectorDB + Monitoring)
