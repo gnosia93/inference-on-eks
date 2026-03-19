@@ -5,7 +5,7 @@
 문서 수집 → (레이아웃) 파싱 → 청킹 → 임베딩 → 벡터DB 저장 → 검색 → 리랭킹 → LLM 생성
 ```
 
-#### 1. 샘플코드 ####
+#### 샘플코드 ####
 ```
 from langchain_community.document_loaders import GitHubLoader, WebBaseLoader
 from langchain_community.embeddings import HuggingFaceEmbeddings
