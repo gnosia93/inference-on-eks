@@ -17,9 +17,9 @@
 ![](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/images/ft-sample.png)
 
 
-### 참고 - 추론 ###
+## 추론 ##
 PeftModel.from_pretrained(base_model, "./qwen-devops-lora") 에서 기존 base_model 의 가중치 값과 LoRA 로 튜닝된 가중치 값을 합쳐서 모델을 로딩한다.
-```
+```python
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
@@ -48,3 +48,48 @@ with torch.no_grad():
 response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
 print(response)
 ```
+
+### vLLM 서빙 ###
+
+* 가중치 머지후 서빙 
+```python
+from peft import PeftModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+# 베이스 모델 + LoRA 어댑터 로드
+base_model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.1-8B-Instruct")
+model = PeftModel.from_pretrained(base_model, "./lora-adapter")
+
+# 머지
+merged_model = model.merge_and_unload()
+
+# 저장
+merged_model.save_pretrained("./merged-model")
+AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B-Instruct").save_pretrained("./merged-model")
+```
+
+```bash
+# 머지된 모델 서빙
+vllm serve ./merged-model --port 8000
+```
+
+* 자주쓰는 옵션
+```pythnon
+
+vllm serve ./my-model \
+  --port 8000 \
+  --tensor-parallel-size 2 \        # GPU 2장에 모델 분할
+  --gpu-memory-utilization 0.9 \    # GPU 메모리 90% 사용
+  --max-model-len 4096 \            # 최대 컨텍스트 길이
+  --dtype auto \                    # 데이터 타입 자동 (bf16/fp16)
+  --quantization awq \              # 양자화 모델일 경우 (awq, gptq, squeezellm)
+  --chat-template ./template.jinja  # 커스텀 채팅 템플릿
+```
+
+
+
+
+
+
+
+
