@@ -1,3 +1,4 @@
+* [셀 1] 임포트
 ```python
 from typing import TypedDict, Annotated
 from langgraph.graph import StateGraph, START, END
@@ -8,7 +9,7 @@ from langchain_core.tools import tool
 import random
 ```
 
-* @tool 선언
+* [셀 2] @tool 선언
 ```python
 # ──────────────────────────────────────
 # 1. IT 운영 도구 정의
@@ -111,7 +112,7 @@ def get_deploy_history(service: str) -> str:
 tools = [check_server_status, query_database, check_pod_status, rollback_deployment, get_deploy_history]
 ```
 
-* 에이전트 구성
+* [셀3] 에이전트 구성
 ```python
 # ──────────────────────────────────────
 # 2. 에이전트 구성
@@ -148,7 +149,7 @@ graph_builder.add_edge("tools", "agent")
 agent = graph_builder.compile()
 ```
 
-* 실행
+* [셀4] 테스트 / 실행
 ```python
 # ──────────────────────────────────────
 # 3. 실행 예시
