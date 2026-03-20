@@ -10,7 +10,7 @@
 
 * L5. Agentic AI
    - [LangGraph로 RAG 구현](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/5-langgraph-rag.md)
-   - Tool Calling (함수 호출)
+   - [@Tool Calling](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/5-tool-calling.md)
    - Multi-Agent 패턴 (Planner → Executor → Reviewer)
    - 메모리 관리 (대화 히스토리)
    - LangFuse
