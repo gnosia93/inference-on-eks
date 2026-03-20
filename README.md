@@ -11,8 +11,6 @@
 * L5. Agentic AI
    - [LangGraph로 RAG 구현](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/5-langgraph-rag.md)
    - [@tool 콜링](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/5-tool-calling.md)
-   - Multi-Agent 패턴 (Planner → Executor → Reviewer)
-   - 메모리 관리 (대화 히스토리)
    - [LangFuse](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/5-langfuse.md)
 
 * [6. 가드레일 구성하기](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/6.guard-rail.md)
