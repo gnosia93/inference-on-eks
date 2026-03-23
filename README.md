@@ -1,7 +1,4 @@
 # EKS Agentic AI  
-; 각각의 모듀에 대해서 도커를 만들어서 ecr 에 푸시한다.
-
-; gitlab 과 연동하여 코드 repo 를 만들고 ci/cd 
 
 * [L1. 노트북 환경 설정](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/1.start.md)
 
@@ -33,8 +30,6 @@
 
 ### _Appendix_ ###
 
-; 아래 내용은 테라폼에서 자동으로 ..적용 ???  
-
 * [1. EKS 생성하기](https://github.com/gnosia93/infer-on-eks/blob/main/lesson/1-create-eks.md)
 
 * [2. GPU 노드풀 생성](https://github.com/gnosia93/infer-on-eks/blob/main/lesson/2-gpu-nodepool.md)
@@ -45,7 +40,12 @@
   - [로컬 Docker 배포하기](https://github.com/gnosia93/interence-on-eks/blob/main/lesson/4-dynamo-docker.md) 
   - [EKS 배포하기](https://github.com/gnosia93/interence-on-eks/blob/main/lesson/4-dynamo-eks.md) 
 
-    
+### todo ###
+* 각각의 모듈에 대해서 도커를 만들어서 ecr 에 푸시한다.
+* gitlab 과 연동하여 코드 repo 를 만들고 ci/cd 
+* appendix 내용을 어떻게 워크샵에 잘 녹여낼지 고민이 필요
+* agentic ai 에 대한 어플리케이션 개발 부터 open source 기반의 LLM serving infra 까지 어떻게 잘 녹여낼지 고민이 필요하다..
+* 다루는 내용이 너무 많은 관계로, 어떻게 하면 깔끔하게 핵심만 다룰 수 있을지????      
 
 ## 레퍼런스 ##
 
