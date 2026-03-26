@@ -67,10 +67,10 @@ Step 200: loss=2.12, time=0.150s  → 131072/0.150 = 0.87M tokens/sec ← 느려
 Loki는 Grafana Labs가 만든 로그 수집/검색 시스템으로, "Prometheus의 로그 버전"이라고 불린다. 각 노드에 설치된 에이전트(Alloy/Promtail)가 syslog, 잡 로그, 커널 로그 등을 수집하고 라벨을 붙여서 Loki 서버로 전송하면, Loki는 라벨만 인덱싱하고 로그 본문은 압축 저장한다. 검색은 LogQL이라는 쿼리 언어를 사용하며, Grafana와 네이티브로 통합되어 Prometheus 메트릭과 Loki 로그를 같은 대시보드에서 시간축으로 겹쳐볼 수 있다. ELK(Elasticsearch) 대비 최대 강점은 비용인데, Elasticsearch는 로그 본문 전체를 인덱싱해서 디스크와 메모리를 많이 소비하는 반면, Loki는 라벨만 인덱싱하므로 대규모 클러스터에서 운영 비용이 훨씬 저렴하다. GPU 클러스터 1000대 규모에서 로그가 폭발적으로 늘어나는 환경에서는 Loki가 현실적인 선택이다.
 
 ### 구성요소 ###
-* Distributor  → 로그 수신 + 샤딩
-* Ingester     → 로그 저장 (여러 인스턴스로 분산)
-* Querier      → 검색 처리
-* Compactor    → 압축/정리
-* Store        → S3/GCS 같은 오브젝트 스토리지에 영구 저장
+* Distributor  → 로그 수신 + 샤딩(라벨 기반으로 Ingester에 분배)
+* Ingester     → 로그 저장 (여러 인스턴스로 구성하여 분산), 로그는 메모리 버퍼링후 일정량 쌓이면 스토어에 flush   
+* Querier      → LogQL 쿼리 처리, 인덱스에서 라벨 검색 → 청크 읽기 
+* Compactor    → 오래된 청크 압축/병합/삭제 
+* Store        → S3/GCS 같은 오브젝트 스토리지에 영구 저장 / 라벨 → 인덱스, 본문 → 압축 청크
 
 
