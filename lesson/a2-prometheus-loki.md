@@ -36,6 +36,10 @@ curl localhost:8000/metrics
 # training_throughput_tokens_per_sec 1520
 ```
 
+#### 메트릭 타입 ####
+![](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/images/prometheus-custom-metrics.png)
+학습 모니터링에서는 Gauge(loss, throughput)와 Counter(step)를 주로 사용한다.
+
 ### 학습 throughput(tokens/sec) ###
 "GPU를 얼마나 효율적으로 쓰고 있는가" 를 나타낸다. 예를 들어
 ```
@@ -52,8 +56,6 @@ sm 60% + throughput 0.8M → 데이터 로딩 병목
 throughput이 학습 효율의 최종 지표이고, 이게 떨어지면 sm, pclk, 데이터 로딩을 순서대로 확인한다.
 
 
-#### 메트릭 타입 ####
-![](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/images/prometheus-custom-metrics.png)
-학습 모니터링에서는 Gauge(loss, throughput)와 Counter(step)를 주로 사용한다.
+
 
 
