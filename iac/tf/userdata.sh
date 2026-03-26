@@ -1,7 +1,7 @@
 #!/bin/bash
 # userdata.sh
 set -e
-exec > /var/log/userdata.log 2>&1
+exec > /var/log/userdata.log 2>&1          # 프로세스 교체 없이, 현재 셸의 출력만 변경
 echo "=== UserData Start ==="
 
 apt-get update -y
