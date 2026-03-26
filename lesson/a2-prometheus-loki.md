@@ -74,3 +74,25 @@ Loki는 Grafana Labs가 만든 로그 수집/검색 시스템으로, "Prometheus
 * Store        → S3/GCS 같은 오브젝트 스토리지에 영구 저장 / 라벨 → 인덱스, 본문 → 압축 청크
 
 
+## 프로메테우스 샤딩 ##
+```
+DCGM Exporter: GPU당 약 50~100개 메트릭
+Node Exporter: 노드당 약 500~1000개 메트릭
+스크래핑 주기: 15초
+
+노드당 메트릭 수 (8 GPU):
+  DCGM: 8 GPU × 100 = 800
+  Node: 1000
+  합계: ~1,800 메트릭/노드
+```
+
+단일 Prometheus 한계: 약 100만~200만 active time series
+* 100노드 (800 GPU):  ~180,000 시리즈 → 여유
+* 500노드 (4,000 GPU): ~900,000 시리즈 → 한계 근접
+* 1000노드 (8,000 GPU): ~1,800,000 시리즈 → Thanos 필요
+
+>[!NOTE]
+>대략 m5.4xlarge (64GB) 기준으로 500노드(GPU 4,000장) 정도가 단일 Prometheus의 한계로, 그 이상이면 Thanos나 Mimir로 샤딩이 필요하다.
+>Prometheus 병목은 메모리로, active time series를 전부 메모리에 올려놓는다. 메모리가 충분하고 DISK 성능이 받쳐준다면 단일 인스턴스로도 수천대의 노드를 커버할 수 있다.
+>단, 성능 테스트 후 구성해야 한다.
+
