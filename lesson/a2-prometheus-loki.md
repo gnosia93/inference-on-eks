@@ -75,6 +75,7 @@ Loki는 Grafana Labs가 만든 로그 수집/검색 시스템으로, "Prometheus
 
 
 ## 프로메테우스 샤딩 ##
+아래는 샤딩 관련 사이징 예시이다. 정확한 값은 측정이 필요하다.
 ```
 DCGM Exporter: GPU당 약 50~100개 메트릭
 Node Exporter: 노드당 약 500~1000개 메트릭
