@@ -19,8 +19,6 @@ kube-prometheus-stack 설치하면 API Server 메트릭 Prometheus로 수집할 
 * apiserver_request_duration_seconds   API 응답 시간
 * etcd_request_duration_seconds        etcd 응답 시간
 * scheduler_scheduling_duration_seconds 스케줄링 소요 시간
-```
-
 
 ### 온프램 ###
 ```
