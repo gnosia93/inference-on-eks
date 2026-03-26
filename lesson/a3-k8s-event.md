@@ -18,8 +18,70 @@
 
 ### 3. 이벤트 조회 ###
 ```
-kubectl describe pod <파드_이름>
-kubectl get events
-kubectl get events --sort-by='.metadata.creationTimestamp'
-kubectl get events -A --field-selector type=Warning
+kubectl describe pod <파드_이름>     # 파드 레벨
+kubectl get events                 # 네임스페이스 레벨   
+kubectl get events --sort-by='.metadata.creationTimestamp'     # 발생시간 역순
+kubectl get events -A --field-selector type=Warning            # 클러스터 전체
+```
+
+### 4. event 로깅 ###
+
+[values.yaml]
+```
+config:
+  logLevel: debug      # 디버그 모드 (정상 작동 확인 후 info로 변경)
+  logFormat: json      # 로그를 JSON 형태로 출력
+
+  # 1. 대상지 (Receivers) 설정
+  receivers:
+    # (A) 디버깅용 확인 (파드 로그(stdout)에 그대로 출력)
+    - name: "dump-stdout"
+      stdout: {}
+
+    # (B) 영구 보관용 (Loki) - URL 주소와 스트림 라벨 설정
+    - name: "loki-db"
+      loki:
+        # 클러스터 내 Loki의 실제 Push 주소를 적어줍니다.
+        # 예: http://<loki-service-name>.<namespace>.svc.cluster.local:<port>/loki/api/v1/push
+        url: "http://loki-gateway.monitoring.svc.cluster.local/loki/api/v1/push"
+        
+        # Grafana에서 이벤트를 쉽게 골라내기 위해 라벨을 붙입니다.
+        streamLabels:
+          "app": "kubernetes-event-exporter"
+          "cluster_name": "ai-gpu-cluster"
+
+    # (C) 즉각 대응용 (Slack Webhook 알림)
+    - name: "slack-alert"
+      webhook:
+        endpoint: "https://hooks.slack.com/services/TXXXXX/BXXXXX/XXXXX" # 슬랙 웹훅 URL
+        layout:
+          # 슬랙에 표시될 메시지 포맷 커스텀
+          text: "🚨 *[K8s Event Warning]*\n*리소스:* `{{ .InvolvedObject.Kind }}/{{ .InvolvedObject.Name }}`\n*이유:* `{{ .Reason }}`\n*메시지:* {{ .Message }}"
+
+  # 2. 필터링 및 분배 (Route) 설정
+  route:
+    routes:
+      # 모든 이벤트를 stdout과 Loki로 보냄
+      - match:
+          - receiver: "dump-stdout"
+          - receiver: "loki-db"
+      
+      # 단, Slack 알림의 경우 Normal(정상) 이벤트는 무시(drop)하고, Warning(에러)만 전송
+      - drop:
+          - type: "Normal"
+        match:
+          - receiver: "slack-alert"
+```
+
+[event-exporter 설치]
+```
+# 1. Bitnami Helm Repository 추가 및 업데이트
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+
+# 2. Helm Chart 설치 (네임스페이스는 monitoring 앱들이 있는 곳에 맞춤)
+helm install event-exporter bitnami/kubernetes-event-exporter \
+  --namespace monitoring \
+  --create-namespace \
+  -f values.yaml
 ```
