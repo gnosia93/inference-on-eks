@@ -6,7 +6,6 @@ brew install hashicorp/tap/terraform
 ```
 
 ### EKS 설치 ###
-테라폼으로 VPC 및 접속용 vs-code EC2 인스턴스를 생성한다.   
 ```
 git pull https://github.com/gnosia93/eks-agentic-ai.git
 cd eks-agentic-ai/tf
