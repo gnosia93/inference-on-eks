@@ -15,3 +15,11 @@
 * Message (메시지): 상세한 설명.
 * Source (출처): 이 이벤트를 누가 보고했는지 나타낸다. (예: kubelet, default-scheduler)
 * Object (대상 객체): 이 이벤트가 어떤 리소스(Pod, Node, Deployment 등)와 관련된 것인지 가리킨다.
+
+### 3. 이벤트 조회 ###
+```
+kubectl describe pod <파드_이름>
+kubectl get events
+kubectl get events --sort-by='.metadata.creationTimestamp'
+kubectl get events -A --field-selector type=Warning
+```
