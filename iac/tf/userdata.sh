@@ -4,7 +4,7 @@ set -e                                     # 에러 나면, 즉시 중단
 exec > /var/log/userdata.log 2>&1          # 프로세스 교체 없이, 현재 셸의 출력만 변경
 echo "=== UserData Start ==="
 
-apt-get update -y
+apt-get update -y || true
 
 # ============================================================
 # 1. VS Code Server (code-server)
