@@ -1,7 +1,6 @@
 
-### Triton 인프런스 서버 ###
+### 모델 컴파일 ###
 
-트리톤 인프런스 엔진을 빌드한다.
 ```bash
 # S3 버킷 생성
 aws s3 mb s3://your-bucket-name --region ap-northeast-2
@@ -22,7 +21,7 @@ kubectl wait --for=condition=complete job/trtllm-engine-build --timeout=60m
 kubectl logs job/trtllm-engine-build
 ```
 
-트리톤 인퍼런스 서버를 배포한다.
+tensorrt 인퍼런스 서버를 배포한다.
 ```
 curl -o https://raw.githubusercontent.com/gnosia93/eks-agentic-ai/refs/heads/main/code/yaml/trtllm-qwen.yaml
 
