@@ -121,10 +121,6 @@ print(result)
 * 도구: MT-Bench, AlpacaEval, G-Eval, 직접 구현
 * 방식: Single Rating, Pairwise Comparison, Reference-based
 
-## 4. 추론 성능 (Inference Performance) ##
-- Throughput: 초당 처리 토큰 수 (tokens/sec)
-- Latency: 첫 토큰까지 시간 (TTFT), 토큰 간 시간 (TBT)
-- 동시 처리: 동시 요청 수 대비 처리량
 
 ## 레퍼런스 ##
 * https://artificialanalysis.ai/leaderboards/models
