@@ -19,4 +19,18 @@ vLLM은 시작 시 먼저 모델 가중치를 GPU 메모리에 로드하고, gpu
      - CUDA 커널 실행 오버헤드, Activation 임시 버퍼, Tensor 연산 중간 결과물, NCCL 통신 버퍼 (TP 사용시)
 
 
+### 테스트 하기 ###
+```bash
+# 클러스터 내부에서 테스트 (임시 파드)
+kubectl run test --rm -it --image=curlimages/curl -- \
+  curl http://vllm-qwen-svc/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen",
+    "messages": [{"role": "user", "content": "Hello"}],
+    "max_tokens": 50
+  }'
+```
+
+
 
