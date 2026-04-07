@@ -35,21 +35,12 @@
 * [LOKI에 K8S 이벤트 저장하기](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/a3-k8s-event.md)
 * [K8S 컨트롤 플레인](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/a4-k8s-controlplan.md)
 * [Harness Engineering](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/a5.harness-eng.md)
-    
-### todo ###
-* 각각의 모듈에 대해서 도커를 만들어서 ecr 에 푸시한다.
-* gitlab 과 연동하여 코드 repo 를 만들고 ci/cd 
-* appendix 내용을 어떻게 워크샵에 잘 녹여낼지 고민이 필요
-* agentic ai 에 대한 어플리케이션 개발 부터 open source 기반의 LLM serving infra 까지 어떻게 잘 녹여내야 한다.
-* vLLM, TensorRT-LLM, SGLang 등 추론 서빙 엔진 / 추론 최적화 
 * KV Cache 최적화, Prefill/Decode 분리, Continuous Batching, Speculative Decoding
 * 에이전트 오케스트레이션, 하네스 엔지니어링
 * 장시간 실행되는 에이전트의 상태 관리, 복구, 모니터링
-* LangGraph / LangGraph.
-  
+
      
 ## 레퍼런스 ##
-
 * https://github.com/NVIDIA/Model-Optimizer/tree/main 
 * https://github.com/huggingface/accelerate
 
