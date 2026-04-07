@@ -13,6 +13,9 @@ cd eks-agentic-ai/iac/tf
 terraform init
 terraform apply --auto-approve
 ```
+> ![TIP]
+> ..
+> ..
 
 ### 클러스터 등록 ###
 
