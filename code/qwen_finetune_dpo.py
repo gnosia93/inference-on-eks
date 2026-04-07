@@ -59,12 +59,12 @@ model.print_trainable_parameters()
 dpo_data = [
     {
         "prompt": "GPU OOM이 발생했을 때 해결 방법을 알려줘",
-        "chosen": "GPU OOM 해결 방법: 1) 배치 크기 줄이기 + Gradient Accumulation 2) Mixed Precision(BF16) 사용 3) Activation Checkpointing 적용 4) ZeRO Stage 3 또는 FSDP 사용",
+        "chosen": "GPU OOM 해결 방법: 1) 배치 크기 줄이기 + Gradient Accumulation으로 effective batch size 유지 2) Mixed Precision(BF16) 사용으로 메모리 50% 절감 3) Activation Checkpointing 적용 4) 모델이 단일 GPU에 안 들어가면 ZeRO Stage 3 또는 FSDP 사용",
         "rejected": "GPU를 더 사세요. 메모리가 부족하면 더 큰 GPU를 쓰면 됩니다."
     },
     {
         "prompt": "Kubernetes Pod가 CrashLoopBackOff 상태일 때 디버깅 방법은?",
-        "chosen": "kubectl logs <pod> --previous로 이전 크래시 로그 확인, kubectl describe pod로 이벤트 확인, 리소스 제한 초과 여부 확인, probe 설정 확인",
+        "chosen": "CrashLoopBackOff 디버깅: 1) kubectl logs <pod> --previous로 이전 크래시 로그 확인 2) kubectl describe pod <pod>로 이벤트 확인 3) 리소스 제한(memory limit) 초과 여부 확인 4) liveness/readiness probe 설정 확인 5) 이미지 pull 실패 여부 확인",
         "rejected": "Pod를 삭제하고 다시 만드세요."
     },
     {
@@ -76,6 +76,26 @@ dpo_data = [
         "prompt": "Prometheus에서 GPU 메트릭을 수집하는 방법은?",
         "chosen": "DCGM Exporter를 사용합니다. 1) dcgm-exporter 컨테이너 실행 (포트 9400) 2) prometheus.yml에 scrape target 추가 3) DCGM_FI_DEV_GPU_UTIL, DCGM_FI_DEV_FB_USED 등 메트릭 수집 4) Grafana 대시보드로 시각화",
         "rejected": "nvidia-smi를 cron으로 돌려서 파일에 저장하세요."
+    },
+    {
+        "prompt": "MLflow로 실험 추적하는 기본 코드를 보여줘",
+        "chosen": "import mlflow\nmlflow.set_experiment('my-experiment')\nwith mlflow.start_run():\n    mlflow.log_param('lr', 0.001)\n    mlflow.log_param('batch_size', 32)\n    mlflow.log_metric('loss', 0.5)\n    mlflow.log_metric('accuracy', 0.92)\n    mlflow.pytorch.log_model(model, 'model')",
+        "rejected": "실험 추적은 필요 없습니다. 터미널 출력을 복사해서 메모장에 저장하세요."
+    },
+    {
+        "prompt": "Terraform으로 AWS VPC를 생성하는 기본 코드는?",
+        "chosen": "resource \"aws_vpc\" \"main\" {\n  cidr_block = \"10.0.0.0/16\"\n  enable_dns_support = true\n  enable_dns_hostnames = true\n  tags = { Name = \"my-vpc\" }\n}\nresource \"aws_subnet\" \"public\" {\n  vpc_id = aws_vpc.main.id\n  cidr_block = \"10.0.1.0/24\"\n  map_public_ip_on_launch = true\n}",
+        "rejected": "AWS 콘솔에서 클릭으로 만드세요. IaC는 복잡하기만 합니다."
+    },
+    {
+        "prompt": "Ray를 사용한 분산 학습 기본 코드를 보여줘",
+        "chosen": "import ray\nfrom ray import train\nfrom ray.train.torch import TorchTrainer\n\ndef train_func():\n    model = ...\n    optimizer = ...\n    for epoch in range(10):\n        loss = train_step(model, optimizer)\n        train.report({'loss': loss})\n\ntrainer = TorchTrainer(train_func, scaling_config=train.ScalingConfig(num_workers=4, use_gpu=True))\nresult = trainer.fit()",
+        "rejected": "분산 학습은 어렵습니다. 그냥 GPU 1장으로 오래 돌리세요."
+    },
+    {
+        "prompt": "Slurm에서 멀티노드 GPU 학습 작업을 제출하는 sbatch 스크립트를 보여줘",
+        "chosen": "#!/bin/bash\n#SBATCH --job-name=train\n#SBATCH --nodes=4\n#SBATCH --ntasks-per-node=8\n#SBATCH --gpus-per-node=8\n#SBATCH --cpus-per-task=12\n#SBATCH --exclusive\n\nsrun --gpu-bind=closest torchrun --nnodes=$SLURM_NNODES --nproc_per_node=8 --rdzv_backend=c10d --rdzv_endpoint=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n1):29400 train.py",
+        "rejected": "각 노드에 SSH로 접속해서 수동으로 python train.py를 실행하세요."
     },
 ]
 
