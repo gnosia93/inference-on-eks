@@ -15,7 +15,7 @@ metadata:
   name: vllm-qwen-scaler
 spec:
   scaleTargetRef:
-    name: vllm-qwen
+    name: vllm-qwen            # 스케일링 대상 Deployment
   minReplicaCount: 2
   maxReplicaCount: 8
   cooldownPeriod: 300          # 축소 전 5분 대기
