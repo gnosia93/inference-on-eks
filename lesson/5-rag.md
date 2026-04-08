@@ -56,6 +56,14 @@ for r in results:
     print(r.page_content[:200])
     print("---")
 ```
+```
+4. 실행
+export GITHUB_ACCESS_TOKEN=ghp_xxxxxxxxxxxx
+python test_rag.py
+
+5. Milvus 종료
+bash standalone_embed.sh stop
+```
 
 
 #### 검색 샘플 코드 ####
