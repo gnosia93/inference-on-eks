@@ -25,3 +25,8 @@
 * NCCL 튜닝: NCCL_ALGO, NCCL_PROTO 환경변수로 통신 알고리즘/프로토콜 선택 가능. InfiniBand 환경에서는 NCCL_IB_HCA로 HCA 디바이스를 명시적으로 지정하면 성능이 개선된다.
 * PP 에서의 비동기 전송: 스테이지 간 activation 전달을 비동기로 처리하면 computation과 communication을 오버랩할 수 있다.
 * KV Cache 관리: 멀티노드에서 continuous batching을 쓸 때, 각 노드의 KV cache 상태를 동기화하는 오버헤드가 존재한다. vLLM의 PagedAttention이 이 부분에서 메모리 효율을 크게 높여준다.
+
+### 추가로 고려할 만한 기법들 ###
+* Speculative Decoding: 작은 draft 모델로 여러 토큰을 먼저 생성하고 큰 모델로 검증. 멀티노드 환경에서 draft 모델을 별도 노드에 배치하면 지연시간을 줄일 수 있다.
+* Expert Parallelism: MoE 모델의 경우 expert를 노드별로 분산 배치하는 전략이 TP/PP와 별도로 필요하다.
+* Disaggregated Prefill/Decode: prefill(프롬프트 처리)과 decode(토큰 생성)를 별도 노드 그룹에서 처리하는 아키텍처. 처리량과 지연시간을 독립적으로 스케일링할 수 있다.
