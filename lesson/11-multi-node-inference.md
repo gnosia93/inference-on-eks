@@ -6,7 +6,7 @@
 
 ### 서빙 프레임워크(추론 엔진) ###
 * vLLM: PagedAttention + 텐서/파이프라인 병렬리즘 지원
-* TensorRT-LLM: NVIDIA 최적화, 멀티노드 지원
+* TensorRT-LLM: NVIDIA 최적화, 멀티노드 지원(MPI + NCCL)
 
 
 ### TP + PP 하이브리드 구성 시 고려사항 ###
