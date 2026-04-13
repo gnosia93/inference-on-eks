@@ -24,13 +24,14 @@
 * L9. CI/CD 파이프라인: 프롬프트 버전 관리, 에이전트 로직 테스트 자동화, 배포 파이프라인.
 
 * L10. EKS 배포하기
-   - [vLLM 인퍼런스](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/9-vllm-inference.md)  
-   - [TensorRT-LLM 인퍼런스](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/9-tensorrt-inference.md)
-   - [KEDA 기반 오토 스케일링](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/9-keda-autoscaling.md)
-  
-* [L11. Post Training](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/10.post-training.md)
+   - [vLLM 인퍼런스](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/10-vllm-inference.md)  
+   - [TensorRT-LLM 인퍼런스](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/10-tensorrt-inference.md)
+   - [KEDA 기반 오토 스케일링](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/10-keda-autoscaling.md)
 
-* L12. 멀티 노드 추론 최적화
+* L11. 멀티 노드 추론 최적화
+
+* [L12. Post Training](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/12-post-training.md)
+
 
 ### _Appendix_ ###
 
