@@ -35,3 +35,15 @@ KV Cache ≈ 2 × num_layers × hidden_dim × seq_len × batch_size × bytes
 = 70 / 64
 = 1.09 → H100 1장으로 가능 (KV cache 여유 적음)
 ```
+
+### GPU별 매칭 가이드 (예시) ###
+```
+GPU              VRAM      FP16 기준     양자화(INT8/FP8) 기준
+──────────────────────────────────────────────────────────────
+A10G             24GB      7B            13B
+L4               24GB      7B            13B
+A100 (40GB)      40GB      13B           25B
+A100 (80GB)      80GB      30B           55B
+H100 (80GB)      80GB      30B           55B
+H200 (141GB)     141GB     55B           70B
+```
