@@ -20,10 +20,10 @@
    - * 사용자 피드백 루프: 응답에 대한 thumbs up/down 수집하고 개선에 반영하는 구조.  
 
 * [L7. 에이전트 가드레일 및 보안 강화](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/7.guard-rail.md)
-   - 7-1. NeMo Guardrails를 이용한 입력값 필터링
-   - 7-2. 에이전트 도구 호출 보안: SSRF 방지를 위한 네트워크 격리 (Egress 관리)
-   - 7-3. 실전 대응: Prompt Injection 탐지 모델 적용 (Llama Guard 3)
-   - 7-4. 권한 제어: LangGraph를 이용한 Human-in-the-loop(승인 절차) 구현
+   - NeMo Guardrails를 이용한 입력값 필터링
+   - 에이전트 도구 호출 보안: SSRF 방지를 위한 네트워크 격리 (Egress 관리)
+   - 실전 대응: Prompt Injection 탐지 모델 적용 (Llama Guard 3)
+   - 권한 제어: LangGraph를 이용한 Human-in-the-loop(승인 절차) 구현
 
 * [L8. RAG 평가 파이프라인 구성하기](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/8.eval-framework.md)
 
