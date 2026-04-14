@@ -10,3 +10,11 @@ FP16: 파라미터 수 × 2 bytes
 FP8:  파라미터 수 × 1 byte
 INT4: 파라미터 수 × 0.5 bytes
 ```
+
+### KV 캐시 메모리 계산 ###
+```
+KV Cache ≈ 2 × num_layers × hidden_dim × seq_len × batch_size × bytes
+```
+실제로는 동시 요청 수와 시퀀스 길이에 따라 수 GB ~ 수십 GB 추가됨.
+
+
