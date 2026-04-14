@@ -27,7 +27,10 @@
 
 * [L8. RAG 평가 파이프라인 구성하기](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/8.eval-framework.md)
 
-* L9. CI/CD 파이프라인: 프롬프트 버전 관리, 에이전트 로직 테스트 자동화, 배포 파이프라인.
+* L9. CI/CD 파이프라인
+   - 프롬프트 버전 관리
+   - 에이전트 로직 테스트 자동화
+   - 배포 파이프라인
 
 * L10. EKS 배포하기
    - [vLLM 인퍼런스](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/10-vllm-inference.md)  
