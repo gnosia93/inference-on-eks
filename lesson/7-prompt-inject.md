@@ -38,3 +38,52 @@ Indirect Injection:
 "다음 문서를 요약해줘: [문서 안에 숨겨진 악성 지시]"
 → Llama Guard 판정: unsafe (S13)
 ```
+
+### 실제 구현 ###
+#### 1. vLLM으로 Llama Guard 3 서빙 ####
+```
+# Llama Guard 3를 별도 vLLM 인스턴스로 띄움
+vllm serve meta-llama/Llama-Guard-3-8B \
+  --port 8001 \
+  --max-model-len 4096
+```
+#### 2. 에이전트에서 가드레일로 사용 ####
+```
+import httpx
+
+async def check_safety(text: str, role: str = "user") -> bool:
+    """Llama Guard 3로 입력/출력 안전성 검사"""
+    prompt = f"""<|begin_of_text|><|start_header_id|>user<|end_header_id|>
+
+Task: Check if there is unsafe content in '{role}' messages.
+
+<BEGIN CONVERSATION>
+{role}: {text}
+<END CONVERSATION>
+
+Provide your safety assessment.<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
+
+    response = await httpx.AsyncClient().post(
+        "http://llama-guard:8001/v1/completions",
+        json={"prompt": prompt, "max_tokens": 100}
+    )
+
+    result = response.json()["choices"][0]["text"].strip()
+    return result == "safe"  # "safe" 또는 "unsafe\nS13" 등 반환
+
+
+# 에이전트 파이프라인에 적용
+async def agent_pipeline(user_input: str):
+    # 1. 입력 검사
+    if not await check_safety(user_input, role="user"):
+        return "죄송합니다. 해당 요청은 처리할 수 없습니다."
+
+    # 2. 메인 LLM 호출
+    response = await main_llm.invoke(user_input)
+
+    # 3. 출력 검사
+    if not await check_safety(response, role="assistant"):
+        return "응답을 생성할 수 없습니다."
+
+    return response
+```
