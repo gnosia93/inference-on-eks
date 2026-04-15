@@ -107,3 +107,13 @@ jobs:
         if: always()
         run: npx promptfoo@latest eval --ci --output-file results.json
 ```
+
+
+### 추가 정보 ###
+1. 프롬프트 템플릿화: .txt 파일 안에 변수가 들어갈 자리를 {{ input }}처럼 플레이스홀더로 관리하고, 파이썬 코드(agent.py)에서 이를 렌더링하는 방식을 사용하면 코드가 더 깔끔해집니다.
+
+2. 데이터셋 분리: promptfooconfig.yaml 내부에 테스트 케이스가 너무 많아지면 관리가 힘들어집니다. 테스트용 데이터(Golden Dataset)도 tests/cases.json 처럼 별도 파일로 분리하는 것을 추천합니다.
+
+3. 비용 및 속도: CI에서 매번 모든 테스트를 돌리면 비용이 발생할 수 있습니다. paths 필터를 사용하여 prompts/ 폴더가 변했을 때만 실행되도록 설정하신 것은 매우 효율적입니다.
+
+4. Promptfoo 결과 공유: promptfoo share 기능을 활용하거나, CI 결과물로 생성된 HTML 리포트를 팀원들이 웹에서 바로 확인하게 하면 리뷰 프로세스가 훨씬 빨라집니다.
