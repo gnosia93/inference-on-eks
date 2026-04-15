@@ -23,3 +23,30 @@
    git revert → 이전 프롬프트로 즉시 복원
 ```
 * "Pull Request"는 내가 push한 게 아니라, 메인 브랜치 관리자에게 "내 변경사항을 당겨가(pull) 주세요"라고 요청(request)한다는 의미이다. 내 입장에서는 push했지만, 메인 브랜치 입장에서는 내 코드를 pull해오는 거라서 Pull Request 인거으로 관점이 메인 브랜치 쪽에 있다. 참고로 GitLab에서는 이를 Merge Request(MR)라고 부른다. 
+
+### GitHub 액션 (예시) ###
+```
+# .github/workflows/prompt-eval.yml
+name: Prompt Evaluation
+
+on:
+  pull_request:
+    paths:
+      - 'prompts/**'
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Prompt Eval
+        run: npx promptfoo@latest eval --ci
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Post Results to PR
+        if: always()
+        run: npx promptfoo@latest eval --ci --output-file results.json
+```
