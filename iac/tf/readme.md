@@ -103,6 +103,24 @@ kubectl get pods -n gpu-operator
 kubectl get nodes -o json | jq '.items[].status.allocatable["nvidia.com/gpu"]'
 ```
 
+
+
+### 시큐리티 그룹 태깅 ###
+```
+aws ec2 create-tags \
+  --resources $(aws eks describe-cluster --name ${CLUSTER_NAME} --query \
+					"cluster.resourcesVpcConfig.clusterSecurityGroupId" --output text) \
+  --tags Key=karpenter.sh/discovery,Value=${CLUSTER_NAME}
+
+aws ec2 describe-security-groups \
+  --group-ids $(aws eks describe-cluster --name ${CLUSTER_NAME} --query \
+					"cluster.resourcesVpcConfig.clusterSecurityGroupId" --output text) \
+  --query "SecurityGroups[0].Tags" \
+  --output table
+```
+
+
+
 ### EFA 설치 ###
 ```
 helm repo add eks https://aws.github.io/eks-charts
