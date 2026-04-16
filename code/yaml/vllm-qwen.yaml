@@ -16,7 +16,7 @@ spec:
         app: vllm-qwen
     spec:
       nodeSelector:
-        node.kubernetes.io/instance-type: g6e.12xlarge       # vram 48GB * GPU 4EA
+        node.kubernetes.io/instance-type: g6e.12xlarge       # vram 48GB * GPU 4EA = 192 GB
       tolerations:
         - key: nvidia.com/gpu
           operator: Exists
@@ -26,7 +26,7 @@ spec:
           image: vllm/vllm-openai:latest
           command: ["python", "-m", "vllm.entrypoints.openai.api_server"]
           args:
-            - --model=Qwen/Qwen2.5-72B-Instruct   # Qwen3.5-27B 출시시 모델명 변경
+            - --model=Qwen/Qwen2.5-72B-Instruct    # fp16 사용시 134GB Weight 메모리 필요
             - --tensor-parallel-size=4             # g6e.12xlarge GPU 4장
             - --max-model-len=8192
             - --gpu-memory-utilization=0.90
