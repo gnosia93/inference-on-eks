@@ -29,7 +29,7 @@ kubectl annotate serviceaccount s3-access-sa -n default \
 
 ### 모델 컴파일 하기 ###
 
-[trtllm-engine-build.yaml](https://github.com/gnosia93/eks-agentic-ai/blob/main/code/yaml/trtllm-engine-build.yaml) 으로 실행되는 트리톤 서버를 이용하여 Qwen 모델을 컴파일 한다.
+[trtllm-engine-build.yaml](https://github.com/gnosia93/eks-agentic-ai/blob/main/code/yaml/trtllm-engine-build.yaml) 으로 Qwen 모델을 컴파일 한다.
 ```bash
 mkdir triton && cd triton
 curl -o trtllm-engine-build.yaml \
