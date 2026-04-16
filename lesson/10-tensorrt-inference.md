@@ -68,6 +68,9 @@ kubectl apply -f trtllm-qwen.yaml
 ```
 
 ## 레퍼런스 ##
+* NGC 이미지 태그 목록: https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags
+* 버전별 호환성 매트릭스: https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/introduction/compatibility.html
+* TRT-LLM GitHub 릴리즈: https://github.com/NVIDIA/TensorRT-LLM/releases
 * https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/index.html
 
 
