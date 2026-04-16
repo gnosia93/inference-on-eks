@@ -18,6 +18,7 @@ kubectl get pods
 vllm-qwen-788d98bbfd-qsp9c   0/1     Pending   0          43s
 vllm-qwen-788d98bbfd-r2tjg   0/1     Pending   0          43s
 ```
+![](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/images/qwen-72B-node-viewer.png)
 
 ### vLLM 파라미터 ###
 * --model                     사용모델
