@@ -30,9 +30,6 @@ spec:
               echo "=== Downloading model ==="
               huggingface-cli download Qwen/Qwen2.5-72B-Instruct --local-dir /workspace/qwen-hf
 
-              echo "=== Cloning TRT-LLM ==="
-              git clone --depth 1 https://github.com/NVIDIA/TensorRT-LLM.git /workspace/TensorRT-LLM
-
               echo "=== Converting checkpoint ==="
               python3 /workspace/TensorRT-LLM/examples/models/core/qwen/convert_checkpoint.py \
                 --model_dir /workspace/qwen-hf \
