@@ -66,11 +66,10 @@ curl --silent --location "https://github.com/derailed/k9s/releases/latest/downlo
 sudo mv /tmp/k9s /usr/local/bin/
 k9s version
 
-sudo dnf update -y
-sudo dnf install golang -y
+sudo apt update -y
+sudo apt install -y golang
 go version
 go install github.com/awslabs/eks-node-viewer/cmd/eks-node-viewer@latest
-
 echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc
 source ~/.bashrc
 ```
