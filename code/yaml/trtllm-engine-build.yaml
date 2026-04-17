@@ -45,7 +45,8 @@ spec:
                 --max_seq_len 8192 \
                 --max_batch_size 64 \
                 --gemm_plugin auto \
-                --gpt_attention_plugin auto
+                --gpt_attention_plugin auto \
+                --workers 2
 
               echo "=== Uploading to S3 ==="
               aws s3 cp /workspace/engines/qwen/ s3://${ENGINE_BUCKET}/trtllm-engines/qwen/ --recursive
