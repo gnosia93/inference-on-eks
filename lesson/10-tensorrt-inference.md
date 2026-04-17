@@ -60,7 +60,15 @@ Downloading 'model-00016-of-00037.safetensors' to '/workspace/qwen-hf/.cache/hug
 > pip show transformers torch tensorrt_llm  
 
 > [!IMPORTANT]
->  
+>
+> HuggingFace 모델과 TensorRT-LLM 엔진은 가중치 포맷이 다르다.  
+> HuggingFace: PyTorch 텐서 형태 (safetensors/bin)  
+> TensorRT-LLM: 자체 포맷으로 레이어 이름, 구조, 양자화 정보 등이 재배치  
+> convert_checkpoint.py가 하는 일은 HF 가중치를 TRT-LLM이 이해할 수 있는 포맷으로 변환하는 것이다. TP(텐서 병렬) 분할도 이 단계에서 처리되고, 4개 GPU에 나눠 올리려면 가중치를 미리 4등분된다.  
+> 
+> 그 다음 trtllm-build가 변환된 체크포인트를 받아서 TensorRT 엔진(최적화된 실행 계획)으로 컴파일한다.   
+> 상세 코드는 아래와 같다.
+> 
 > huggingface-cli download Qwen/Qwen2.5-72B-Instruct --local-dir /workspace/qwen-hf
 > 
 > echo "=== Converting checkpoint ==="
@@ -70,7 +78,7 @@ Downloading 'model-00016-of-00037.safetensors' to '/workspace/qwen-hf/.cache/hug
 >   --dtype bfloat16 \
 >   --tp_size 4
 >
-> echo "=== Building TRT-LLM engine ==="
+> echo "=== Building TRT-LLM engine ==="  
 > trtllm-build \
 >   --checkpoint_dir /workspace/qwen-trtllm-ckpt \
 >   --output_dir /workspace/engines/qwen \
