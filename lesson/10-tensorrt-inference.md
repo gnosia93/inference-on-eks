@@ -525,7 +525,7 @@ download: s3://eks-agentic-ai-tensorrt-llm/trtllm-models/qwen-hf/.cache/huggingf
 S3 로 부터 모델 다운로드가 완료될때 까지 30분 이상이 소요된다.
 
 > [!TIP]
-> 모델 로딩을 빠르게 하기위해서는 EKS 또는 FSX for Lustre 클러스터를 사용해야 한다.   
+> 모델 로딩을 빠르게 하기위해서는 EFS 또는 FSX for Lustre 파일시스템을 사용해야 한다.   
 > 하지만 Lustre 의 경우, 초기 로딩시 S3 로 부터 모델을 다운로드 받는 시간이 필요하므로 모델을 S3 로 부터 Lustre 파일 시스템으로 미리 복사해 놓아야 한다.
 
 ## 추론 성능 비교 (versus vLLM) ##
