@@ -348,6 +348,9 @@ W0417 00:46:37.981000 195 torch/utils/cpp_extension.py:2422] If this is not desi
 > 설치된 파이썬 패키지 조회하기    
 > kubectl exec -it [pod name] -- bash  
 > pip show transformers torch tensorrt_llm  
+>
+> 쿠버네티스 Job 삭제
+> kubectl delete job [job-name]
 
 > [!IMPORTANT]
 >
