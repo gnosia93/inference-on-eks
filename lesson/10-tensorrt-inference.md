@@ -43,6 +43,12 @@ TensorRT-LLM을 이용하여 HuggingFace 모델을 NVIDIA GPU에 맞게 최적�
 >
 
 [trtllm-engine-build.yaml](https://github.com/gnosia93/eks-agentic-ai/blob/main/code/yaml/trtllm-engine-build.yaml) 으로 Qwen 모델을 최적화 한다.
+
+ENGINE_BUCKET 환경변수가 설정되어 있는지 확인한다.
+```bash
+export | grep ENGINE_BUCKET
+```
+모델 최적화 JOB 을 실행한다. 대략 1시간 정도의 시간이 소요된다.
 ```bash
 mkdir triton && cd triton
 curl -o trtllm-engine-build.yaml \
