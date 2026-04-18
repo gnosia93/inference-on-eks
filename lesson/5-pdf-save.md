@@ -107,17 +107,10 @@ sh download_pdfs.sh
 ```
 실행한다.
 ```
-NAMESPACE=milvus
-SVC_NAME=milvus
+kubectl port-forward -n milvus svc/milvus 19530:19530 &
+export MILVUS_DB_IP=localhost
 
-HOST=$(kubectl get svc $SVC_NAME -n $NAMESPACE -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-if [ -z "$HOST" ]; then
-  HOST=$(kubectl get svc $SVC_NAME -n $NAMESPACE -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-fi
-
-
-포트 포워딩..
-python main.py --host ${HOST} --reset pdfs/*.pdf
+python main.py --host ${MILVUS_DB_IP} --reset pdfs/*.pdf
+kill %1
 ```
-실행이 끝나면 다음과 같은 메시지가 출력된다.
 
