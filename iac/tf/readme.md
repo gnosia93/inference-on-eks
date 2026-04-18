@@ -112,9 +112,9 @@ helm install gpu-operator nvidia/gpu-operator \
 kubectl get pods -n gpu-operator
 
 kubectl get nodes -o custom-columns=\
-  NAME:.metadata.name,\
-  TYPE:.metadata.labels.'node\.kubernetes\.io/instance-type',\
-  GPU:.status.allocatable.'nvidia\.com/gpu'
+NAME:.metadata.name,\
+TYPE:.metadata.labels.'node\.kubernetes\.io/instance-type',\
+GPU:.status.allocatable.'nvidia\.com/gpu'
 ```
 
 ### EFA 설치 ###
