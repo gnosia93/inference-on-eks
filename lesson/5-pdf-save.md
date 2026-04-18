@@ -64,6 +64,8 @@ store.add_pdf("LoRA_Low-Rank_Adaptation.pdf")
 
 ### 5. 실행 ###
 ```
+curl -o LoRA_Low-Rank_Adaptation.pdf https://arxiv.org/pdf/2106.09685.pdf
+
 python main.py
 ```
 실행이 끝나면 다음과 같은 메시지가 출력된다.
