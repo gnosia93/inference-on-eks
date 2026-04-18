@@ -37,8 +37,8 @@ resource "aws_iam_policy" "milvus_s3" {
         "s3:GetBucketLocation",
       ],
       Resource = [
-        "arn:aws:s3:::${var.vectordb_bucket_name}",
-        "arn:aws:s3:::${var.vectordb_bucket_name}/*",
+        "arn:aws:s3:::${local.vectordb_bucket_name}",
+        "arn:aws:s3:::${local.vectordb_bucket_name}/*",
       ]
     }]
   })
