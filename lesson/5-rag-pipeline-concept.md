@@ -19,3 +19,14 @@
 ```
 
 ### 3. 임베딩 모델 선정 ###
+
+#### 성능 (벤치마크) ####
+* MTEB (Massive Text Embedding Benchmark) — 영어 표준
+* https://huggingface.co/spaces/mteb/leaderboard
+* MTEB Korean / KoMTEB — 한국어 평가
+* BEIR — 검색 특화 벤치마크
+
+#### 보는 법 ####
+* Retrieval 점수가 RAG에선 제일 중요 (분류/클러스터링 점수 아님)
+* 전체 평균만 보지 말고 내 도메인과 비슷한 태스크 점수 확인
+* 주의: 벤치마크 성능 1~2% 차이는 실제 체감 거의 없음. 상위권 모델 중에 다른 요소(비용, 차원)로 고르는 게 현실적.
