@@ -29,7 +29,12 @@ eai-vscode 웹 콘솔로 로그인하여 아래 명령어를 실행한다.
 ```
 export CLUSTER_NAME=eks-agentic-ai
 export ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-aws configure set region ap-northeast-2
+export TOKEN=$(curl -sX PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+export REGION=$(curl -sH "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/placement/region)
+
+echo "CLUSTER_NAME: $CLUSTER_NAME"
+echo "ACCOUNT_ID: $ACCOUNT_ID"
+echo "REGION: $REGION"
 
 aws eks update-kubeconfig --name ${CLUSTER_NAME}
 ```
