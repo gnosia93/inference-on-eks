@@ -107,8 +107,17 @@ sh download_pdfs.sh
 ```
 실행한다.
 ```
-export MIVUS_DB_IP=
-python main.py --host ${MIVUS_DB_IP} --reset pdfs/*.pdf
+NAMESPACE=milvus
+SVC_NAME=milvus
+
+HOST=$(kubectl get svc $SVC_NAME -n $NAMESPACE -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+if [ -z "$HOST" ]; then
+  HOST=$(kubectl get svc $SVC_NAME -n $NAMESPACE -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+fi
+
+
+포트 포워딩..
+python main.py --host ${HOST} --reset pdfs/*.pdf
 ```
 실행이 끝나면 다음과 같은 메시지가 출력된다.
 
