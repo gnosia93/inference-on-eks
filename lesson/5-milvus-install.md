@@ -102,8 +102,15 @@ helm upgrade --install milvus milvus/milvus \
 
 ### milvus 설치 확인 ###
 ```
-kubectl get all -n milvus
+kubectl get pods -n milvus
 ```
+[결과]
+```
+NAME                                 READY   STATUS    RESTARTS   AGE
+milvus-etcd-0                        1/1     Running   0          103s
+milvus-standalone-855bbfd867-s5pgz   1/1     Running   0          103s
+```
+1/1/ READY 상태로 변경될때 까지 약 90초 정도의 시간이 소요된다.
 
 ## 테스트 ##
 Milvus는 gRPC(19530)와 HTTP(9091) 두 가지 포트를 노출한다.
