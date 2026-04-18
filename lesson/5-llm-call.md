@@ -1,18 +1,25 @@
 ## RAG 검색하기 (검색/리랭킹/LLM 답변) ##
 
-전체 과정은 다음과 같다.
+앞 단계에서 Milvus에 저장한 벡터를 실제로 활용해 질의에 답변하는 단계다. 질의 하나가 들어오면 다음 세 단계를 순차로 거쳐 최종 답변이 만들어진다.
 ```
-Query → Milvus 검색 (top 20) → Cohere Rerank (top 5) → Bedrock LLM
+Query → Milvus 검색 (top 20) → bge-reranker-v2-m3 재정렬 (top 5) → Bedrock LLM 답변 생성
 ```
+각 단계의 역할은 다음과 같다.
+
+* Milvus 검색 : 질의를 벡터로 변환해 유사도가 높은 청크 20개를 빠르게 추려낸다. 속도는 빠르지만 정밀도는 다소 떨어진다.
+* Reranker 재정렬 : CrossEncoder가 (질의, 청크) 쌍을 직접 비교해 점수를 매기고, 그중 가장 관련 깊은 5개만 남긴다. 느리지만 정확하다.
+* LLM 답변 생성 : 선별된 컨텍스트를 근거로 Bedrock(Claude)이 최종 답변을 생성한다. 컨텍스트에 포함된 내용만 사용하도록 프롬프트로 제약해 환각(hallucination)을 줄인다.
+
+아래 RAGSearch 클래스는 이 세 단계를 하나로 묶은 래퍼이다.
 
 ### 1. 프로젝트 구조 ###
 ```
 rag/
-├── PDFVectorStore.py   
-├── RAGQuery.py         ← curl로 받은 파일
-├── main.py
-├── query.py            ← 실행파일 
-└── pdfs/               
+├── PDFVectorStore.py   ← 저장용 클래스
+├── RAGSearch.py        ← 검색용 클래스 (curl로 받음)
+├── main.py             ← PDF 저장 스크립트
+├── query.py            ← 검색 실행 스크립트
+└── pdfs/
     └── LoRA_Low-Rank_Adaptation.pdf
 ```
 
