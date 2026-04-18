@@ -4,6 +4,17 @@
 ```
 Query → Milvus 검색 (top 20) → Cohere Rerank (top 5) → Bedrock LLM
 ```
+
+### 1. 프로젝트 구조 ###
+```
+rag/
+├── PDFVectorStore.py   
+├── RAGQuery.py         ← curl로 받은 파일
+├── main.py             
+└── pdfs/               
+    └── LoRA_Low-Rank_Adaptation.pdf
+```
+
 설치
 ```
 curl -o RAGSearch.py \
