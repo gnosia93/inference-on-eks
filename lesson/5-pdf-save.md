@@ -73,6 +73,7 @@ if __name__ == "__main__":
 ```
 
 ### 5. 실행 ###
+pdf 를 다운로드 한다.
 ```
 cat > download_pdfs.sh << 'EOF'
 #!/bin/bash
@@ -101,8 +102,10 @@ done
 echo "Done!"
 ls -lh pdfs/
 EOF
-```
 
+sh download_pdfs.sh 
+```
+실행한다.
 ```
 python main.py --host 10.0.0.5 pdfs/a.pdf /tmp/b.pdf ./c.pdf
 ```
