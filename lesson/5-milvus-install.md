@@ -86,6 +86,9 @@ helm upgrade --install milvus milvus/milvus \
 > eks     https://aws.github.io/eks-charts         
 > milvus  https://zilliztech.github.io/milvus-helm/
 > ```
+> 헬름 릴리즈 삭제
+> ```helm uninstall <release-name> -n <namespace>```
+
 
 ### milvus 설치 확인 ###
 ```
