@@ -20,7 +20,7 @@
 
 ### 3. 임베딩 모델 선정 ###
 
-### 성능 (벤치마크) ###
+### 1. 성능 (벤치마크) ###
 * MTEB (Massive Text Embedding Benchmark) — 영어 표준
 * https://huggingface.co/spaces/mteb/leaderboard
 * MTEB Korean / KoMTEB — 한국어 평가
@@ -31,10 +31,23 @@
 * 전체 평균만 보지 말고 내 도메인과 비슷한 태스크 점수 확인
 * 주의: 벤치마크 성능 1~2% 차이는 실제 체감 거의 없음. 상위권 모델 중에 다른 요소(비용, 차원)로 고르는 게 현실적.
 
-### 차원 수 (중요!) ###
+### 2. 차원 수 (중요!) ###
 벡터 차원이 크면 정확도↑, 저장/검색 비용↑.
 
-### 최대 토큰 (context length) ###
+### 3. 최대 토큰 (context length) ###
 * 한 번에 임베딩할 수 있는 최대 길이(청크 사이즈) 
 * 긴 문서 다루면 8K 지원 모델 유리. 짧은 청크(300~500)만 쓸 거면 512로도 충분.
 
+### 4. 비용 모델 ###
+API 기반:
+```
+OpenAI text-embedding-3-small: $0.02 / 1M tokens
+OpenAI text-embedding-3-large: $0.13 / 1M tokens
+Cohere embed-v3:              $0.10 / 1M tokens
+Voyage AI:                    $0.12 / 1M tokens
+```
+자체 호스팅 (오픈소스):
+```
+서버 비용 (GPU 인스턴스)
+BGE-M3, E5 등은 무료
+```
