@@ -94,7 +94,12 @@ cat << 'EOF' > iam-policy.json
   "Version": "2012-10-17",
   "Statement": [{
     "Effect": "Allow",
-    "Action": ["bedrock:InvokeModel", "bedrock:Converse"],
+    "Action": [
+       "bedrock:InvokeModel",
+       "bedrock:InvokeModelWithResponseStream",
+       "bedrock:Converse",
+       "bedrock:ConverseStream"
+    ],
     "Resource": "*"
   }]
 }
