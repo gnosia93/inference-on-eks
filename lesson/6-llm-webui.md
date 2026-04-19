@@ -67,10 +67,10 @@ extraEnvVars:
 EOF
 ```
 > [!TIP] 
-> # 현재 차트의 기본 values.yaml 확인   
+> #### 현재 차트의 기본 values.yaml 확인 ####   
 > helm show values open-webui/open-webui > default-values.yaml  
 > 
-> # 필요한 부분만 grep   
+> #### 필요한 부분만 grep ####   
 > grep -A1 -iE "openai|ollama|env" default-values.yaml  
 > 
 > 
