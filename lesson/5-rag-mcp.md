@@ -227,20 +227,8 @@ python test_client.py
 kill $PF_PID
 ```
 
-### 운영 포인트 ###
 
-**인증 (외부 공개 시 필수)**
-MCP 프로토콜 자체에는 인증이 없어 앞단에 인증 계층을 둬야 한다.
-- ALB + Cognito/OIDC
-- API Gateway + API 키
-- IAM 인증 ALB (SigV4)
-- VPN/PrivateLink로 내부 접근만 허용
+### 리소스 요구량 ###
+bge-m3 + bge-reranker-v2-m3 로딩에 메모리 약 5~6GB 필요.  
+CPU만 쓰면 질의 응답에 1~3초, GPU 노드면 훨씬 빠르다.
 
-**리소스 요구량**
-bge-m3 + bge-reranker-v2-m3 로딩에 메모리 약 5~6GB 필요. CPU만 쓰면 질의 응답에 1~3초, GPU 노드면 훨씬 빠르다.
-
-**스케일링**
-SSE는 stateful 연결이라 HPA 적용 시 sticky session 설정이 필요하다. 모델 로딩이 무거워 스케일 아웃보다 스케일 업이 효율적인 경우가 많다.
-
-**Milvus 컬렉션 로드**
-`Collection.load()`가 생성자에 있어 서버 시작 시 Milvus도 메모리에 올린다. Milvus 쪽 메모리 할당도 함께 고려한다.
