@@ -54,3 +54,42 @@ kubectl get all -n neo4j
 ```
 ```
 
+### 접속 테스트 ###
+```
+pip install neo4j
+
+kubectl port-forward -n neo4j svc/neo4j 7474:7474 7687:7687 &
+PF_PID=$!
+sleep 3
+```
+[test.py]
+```
+from neo4j import GraphDatabase
+
+driver = GraphDatabase.driver(
+    "bolt://localhost:7687",
+    auth=("neo4j", "WorkshopPass123!"),
+)
+
+with driver.session() as session:
+    # 테스트 데이터 생성
+    session.run("""
+        CREATE (p:Paper {title: 'LoRA', year: 2021})
+        CREATE (a:Author {name: 'Edward Hu'})
+        CREATE (a)-[:AUTHORED]->(p)
+    """)
+
+    # 쿼리
+    result = session.run("""
+        MATCH (a:Author)-[:AUTHORED]->(p:Paper)
+        RETURN a.name AS author, p.title AS title
+    """)
+    for r in result:
+        print(f"{r['author']} → {r['title']}")
+
+driver.close()
+```
+
+```
+python test.py
+```
