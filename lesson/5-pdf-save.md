@@ -159,6 +159,7 @@ kill $PF_PID
 curl -o check_milvus.py \
 https://raw.githubusercontent.com/gnosia93/eks-agentic-ai/refs/heads/main/code/rag/check_milvus.py
 
+python check_milvus.py
 ```
 
 ```bash
