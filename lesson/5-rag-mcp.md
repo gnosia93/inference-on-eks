@@ -152,7 +152,7 @@ spec:
             - name: AWS_REGION
               value: "us-west-2"
             - name: BEDROCK_MODEL_ID
-              value: "anthropic.claude-3-5-sonnet-20241022-v2:0"
+              value: "apac.anthropic.claude-3-5-sonnet-20241022-v2:0"
           resources:
             requests:
               cpu: "2"
