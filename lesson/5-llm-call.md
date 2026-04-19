@@ -29,6 +29,15 @@ Bedrock 호출에 필요한 boto3를 추가로 설치한다. 나머지 패키지
 pip install boto3
 ```
 
+> [!NOTE]
+> aiobotocore 2.25.0 requires botocore<1.40.50,>=1.40.46 와 관련된 의존성 에러가 발생하나,   
+> 아래 bedrock-runtime 이 정상적으로 호출되는 경우 무시한다.  
+> 파이썬에서 pip 경고 ≠ 실제 오류, 경고는 "이 버전 조합이 테스트 안 됐음" 을 의미한다.
+> ```
+> python -c "import boto3; print(boto3.client('bedrock-runtime', region_name='ap-northeast-2'))"
+> ```
+
+
 ### 3. RAGSearch 클래스 내려받기 ###
 미리 작성해 둔 클래스 파일을 가져온다.
 ```
