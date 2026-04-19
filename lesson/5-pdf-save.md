@@ -45,6 +45,7 @@ https://raw.githubusercontent.com/gnosia93/eks-agentic-ai/refs/heads/main/code/r
 
 ### 4. 실행 스크립트 작성 (main.py) ###
 ```
+cat << 'EOF' > main.py
 import argparse
 from PDFVectorStore import PDFVectorStore
 
@@ -70,6 +71,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+EOF
 ```
 
 ### 5. 실행 ###
