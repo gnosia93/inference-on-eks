@@ -216,7 +216,6 @@ async def main():
             )
             print(result.content[0].text)
 
-
 if __name__ == "__main__":
     asyncio.run(main())
 ```
