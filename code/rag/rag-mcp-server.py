@@ -3,9 +3,7 @@ from functools import lru_cache
 from mcp.server.fastmcp import FastMCP
 from RAGSearch import RAGSearch
 
-
 mcp = FastMCP("rag-search")
-
 
 @lru_cache(maxsize=1)
 def get_rag() -> RAGSearch:
@@ -19,7 +17,6 @@ def get_rag() -> RAGSearch:
         ),
         aws_region=os.getenv("AWS_REGION", "us-west-2"),
     )
-
 
 @mcp.tool()
 def search_papers(query: str, top_k: int = 20, top_n: int = 5) -> dict:
@@ -36,7 +33,6 @@ def search_papers(query: str, top_k: int = 20, top_n: int = 5) -> dict:
         for c in result["contexts"]
     ]
     return {"answer": result["answer"], "contexts": contexts}
-
 
 @mcp.tool()
 def retrieve_only(query: str, top_k: int = 10) -> list[dict]:
@@ -55,12 +51,10 @@ def retrieve_only(query: str, top_k: int = 10) -> list[dict]:
         for h in reranked
     ]
 
-
 @mcp.tool()
 def health() -> dict:
     """헬스체크용"""
     return {"status": "ok"}
-
 
 if __name__ == "__main__":
     # SSE(HTTP) 모드로 실행. 0.0.0.0:8000에서 수신
