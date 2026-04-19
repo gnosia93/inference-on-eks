@@ -25,8 +25,8 @@ export TOKEN=$(curl -sX PUT "http://169.254.169.254/latest/api/token" -H "X-aws-
 export AWS_REGION=$(curl -sH "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/placement/region)
 export ENGINE_BUCKET=${CLUSTER_NAME}-tensorrt-llm-${ACCOUNT_ID}
 
+aws s3 rm s3://${ENGINE_BUCKET} --recursive || true
 aws s3 mb s3://${ENGINE_BUCKET} --region ${AWS_REGION}
-aws s3 ls | grep ${ENGINE_BUCKET}
 
 kubectl create serviceaccount s3-access-sa -n default
 kubectl annotate serviceaccount s3-access-sa -n default \
