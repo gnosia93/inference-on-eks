@@ -76,10 +76,10 @@ aws ecr create-repository --repository-name rag-mcp --region ${AWS_REGION}
 
 aws ecr get-login-password --region ${AWS_REGION} | \
   docker login --username AWS --password-stdin \
-  ${ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com
+  ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
 
 docker build -t rag-mcp:latest .
-docker tag rag-mcp:latest ${ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com/rag-mcp:latest
+docker tag rag-mcp:latest ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/rag-mcp:latest
 docker push ${ACCOUNT_ID}.dkr.ecr.us-west-2.amazonaws.com/rag-mcp:latest
 ```
 
@@ -139,7 +139,7 @@ spec:
       serviceAccountName: rag-mcp-sa
       containers:
         - name: rag-mcp
-          image: <ACCOUNT_ID>.dkr.ecr.us-west-2.amazonaws.com/rag-mcp:latest
+          image: ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/rag-mcp:latest
           ports:
             - containerPort: 8000
           env:
