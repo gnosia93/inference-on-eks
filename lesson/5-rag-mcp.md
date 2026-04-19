@@ -20,7 +20,7 @@ https://raw.githubusercontent.com/gnosia93/eks-agentic-ai/refs/heads/main/code/r
 
 ### 2. Docker 이미지 빌드 ###
 
-* requirements.txt
+`requirements.txt`
 ```bash
 cat << 'EOF' > requirements.txt
 mcp>=1.0.0
@@ -33,7 +33,7 @@ boto3
 EOF
 ```
 
-* Dockerfile
+`Dockerfile`
 ```bash
 cat << 'EOF' > Dockerfile
 FROM python:3.11-slim
