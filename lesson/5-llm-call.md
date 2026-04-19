@@ -167,7 +167,7 @@ Q: LoRA에서 low-rank adaptation이 왜 효과적인가?
 kill $PF_PID
 ```
 
-> [!INFORMATION]
+> [!TIP]
 > 본 워크샵에서는 RAG 검색을 위한 임베딩과 검색 결과에 대한 리랭킹 작업을 vscode 로컬 서버에서 CPU 를 활용하여 실행한다. 
 > 실제 운영 환경에서는 SSAS API 를 활용하거나 GPU 를 탑재한 remote API 서버를 구현하여, 해당 작업을 수행해야 한다.
 >  
