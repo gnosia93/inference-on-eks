@@ -8,9 +8,8 @@ from pymilvus import (
     utility,
 )
 from langchain_community.document_loaders import PyMuPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
-
 
 class PDFVectorStore:
     def __init__(
