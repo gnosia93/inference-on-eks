@@ -13,9 +13,9 @@ def get_rag() -> RAGSearch:
         collection_name=os.getenv("MILVUS_COLLECTION", "papers"),
         bedrock_model_id=os.getenv(
             "BEDROCK_MODEL_ID",
-            "anthropic.claude-3-5-sonnet-20241022-v2:0",
+            "apac.anthropic.claude-3-5-sonnet-20241022-v2:0",
         ),
-        aws_region=os.getenv("AWS_REGION", "us-west-2"),
+        aws_region=os.getenv("AWS_REGION", "ap-northeast-2"),
     )
 
 @mcp.tool()
