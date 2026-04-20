@@ -8,11 +8,13 @@ brew install hashicorp/tap/terraform
 ### EKS 설치 ###
 karpenter helm 차트가 aws ecr 에 있기 때문에 ecr 로 먼저 로그인 한 후 설치한다.
 ```
-git clone https://github.com/gnosia93/eks-agentic-ai.git
-cd eks-agentic-ai/iac/tf
-
 aws ecr-public get-login-password --region us-east-1 | \
  helm registry login --username AWS --password-stdin public.ecr.aws
+```
+eks-agentic-ai 레포지토리를 클론하고 테라폼으로 설치한다.
+```
+git clone https://github.com/gnosia93/eks-agentic-ai.git
+cd eks-agentic-ai/iac/tf
 
 terraform init
 terraform apply --auto-approve
