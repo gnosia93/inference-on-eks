@@ -193,3 +193,7 @@ for f in results/*/*/results_*.json; do
 done
 ```
 
+## PPL 측정 ##
+아래 예제는 qwen 모델의 PPL 을 측정하는 방법이다. 
+![](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/images/qwen-ppl.png)
+* https://github.com/gnosia93/agentic-ai-eks/blob/main/code/qwen_ppl.py 
