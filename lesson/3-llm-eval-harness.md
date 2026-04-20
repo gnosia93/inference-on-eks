@@ -112,3 +112,15 @@ spec:
     - port: 8000
       targetPort: 8000
 ```
+
+### 동작 확인 ###
+```
+kubectl -n llm-eval port-forward svc/vllm-qwen25-7b 8000:8000
+
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "messages": [{"role": "user", "content": "한국의 수도는?"}]
+  }'
+```
