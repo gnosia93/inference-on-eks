@@ -68,6 +68,23 @@ aws ec2 run-instances --image-id ${AMI_ID} \
   ]'
 ```
 
+> [!TIP]
+> 인스턴스 삭제
+> ```
+> aws ec2 terminate-instances \
+> --region ${AWS_REGION} \
+> --instance-ids $(aws ec2 describe-instances \
+>    --filters \
+>      "Name=tag:Name,Values=gpu-dev" \
+>      "Name=instance-state-name,Values=pending,running,stopped,stopping" \
+>    --query 'Reservations[].Instances[].InstanceId' \
+>    --output text \
+>    --region ${AWS_REGION})
+> ```
+
+
+
+
 ### 2. PC 의 VS-CODE 로 접속하기 ###
 이 방식은 로컬 PC 의 vs-code IDE 에서 리모트 서버로 ssh 로 접속하여 주피터 노트북을 실행하는 방법이다.
 
