@@ -119,7 +119,7 @@ if __name__ == "__main__":
 - Positivity bias: 점수가 4~5에 몰리면 1~10 스케일 또는 anchor 예시 추가.
 - Judge 검증: golden set 50~200개로 Spearman/Cohen's kappa 측정.
 
-### 5. 평가 도구 ###
+### 5. 평가 도구 선택 ###
 프로덕션에서는 사용자 요청과 LLM 응답을 로깅하고, 로그중 일부를 샘플링하여 비동기로 백그라운드에서 LLM Judge를 돌리고, 결과를 Prometheus 메트릭으로 수집하는 방식으로 운영한다.  
 샘플링 전략은 균등 랜덤 외에 "사용자 피드백이 부정적인 건", "모델이 낮은 logprob으로 답한 건"처럼 weighted sampling을 섞으면 문제 탐지율이 올라간다. Judge는 비용을 고려해야 함으로 전체의 1~5%만 샘플링하고, 회귀 테스트용 고정 데이터셋(수백 건)은 릴리스마다 100% 돌리는 이중 체계를 유지한다.
 
@@ -128,7 +128,8 @@ if __name__ == "__main__":
 - OpenAI Evals / promptfoo: 시나리오 기반 회귀 테스트.
 - LangSmith / Langfuse / Arize Phoenix: 트레이싱 + 평가 통합, 대시보드 제공.
 - MT-Bench / AlpacaEval: 사전 정의된 벤치마크 + judge 프롬프트 템플릿.
-
+- Inspect AI (UK AISI): 안전성/능력 평가 프레임워크
+- TruLens: 관측+평가 결합, 오픈소스
 
 
 
