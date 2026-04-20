@@ -13,19 +13,8 @@ _This workshop is under construction, Not fully implemented yet_
 
 ### _Architecture_ ### 
 ![](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/images/worshop-architecture.png)
-* ec2 (vscode, public)  
-* eks (vpc, private)
-  * langgraph agent pod -> rag mcp pod -> vectordb pod
-  * langgraph agent pod -> lite llm pod
-  * langgraph agent pod -> bedrock
-  * lite llm pod -> bedrock
-  * lite llm pod -> open source llm (gpu pod)
-* bedrock (outside of vpc)
-* s3 (outside of vpc)
-  - model registry
-  - vectordb storage
-  
 
+  
 ### _Topics_ ### 
 
 * [L1. EKS 설치하기](https://github.com/gnosia93/eks-agentic-ai/tree/main/iac/tf)
