@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vllm-current
+  name: vllm-eval
   namespace: llm-eval
   labels:
-    app: vllm-current
+    app: vllm-eval
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vllm-current
+      app: vllm-eval
   template:
     metadata:
       labels:
-        app: vllm-current
+        app: vllm-eval
     spec:
       serviceAccountName: llm-eval-sa
       nodeSelector:
@@ -80,11 +80,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: vllm-current
+  name: vllm-eval
   namespace: llm-eval
 spec:
   selector:
-    app: vllm-current
+    app: vllm-eval
   ports:
     - port: 8000
       targetPort: 8000
