@@ -13,14 +13,15 @@ _This workshop is under construction, Not fully implemented yet_
 
 ### _Architecture_ ### 
 ...
-* ec2
-* eks
+* ec2 (vscode) - vpc, public 
+* eks (vpc, private)
   * vectordb
   * rag mcp
   * langgraph agent
-  * custome llm (gpu pod)
-* bedrock
-* s3
+  * open source llm (gpu pod)
+  * lite llm routing between bedrock and open source llm
+* bedrock (outside of vpc)
+* s3 (outside of vpc)
   - model registry
   - vectordb storage
   
