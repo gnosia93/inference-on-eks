@@ -31,6 +31,8 @@ eksctl create nodegroup \
   --nodes-max=2 \
   --node-volume-size=100 \
   --node-volume-type=gp3 \
+  --node-labels="workload=agent" \
+  --node-taints="dedicated=agent:NoSchedule" \
   --node-private-networking \
   --managed
 ```
