@@ -25,22 +25,19 @@ variable "gpu_type" {
 variable "system_node_instance_types" {
   description = "EKS system node Group Instance Type "
   type    = list(string)
-  default = ["c7g.xlarge"]
+  default = ["c7i.2xlarge"]
 }
 
 variable "system_node_ami_type" {
   description = "시스템 노드 그룹의 AMI 타입"
   type        = string
-  default     = "AL2023_ARM_64_STANDARD"
+  default     = "AL2023_x86_64_STANDARD"
 
   validation {
     condition = contains([
       "AL2023_x86_64_STANDARD",            # 시스템 기본값, 하지만 이 워크샵에서는 default 에 ARM 으로 지정
       "AL2023_ARM_64_STANDARD",
       "AL2023_x86_64_NVIDIA",
-      "AL2_x86_64",
-      "AL2_x86_64_GPU",
-      "AL2_ARM_64",
       "BOTTLEROCKET_x86_64",
       "BOTTLEROCKET_ARM_64",
     ], var.system_node_ami_type)
