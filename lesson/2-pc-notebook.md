@@ -117,11 +117,7 @@ Host gpu-dev
   IdentityFile <KeyFile Path>
 ```
 
-1. `Ctrl+Shift+P → "Remote-SSH: Connect to Host" → gpu-dev 선택 → continue 선택`
-   
-![](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/images/vscode-remote-ssh.png)
-
-2. 하단의 엤는 터미널 탭으로 이동하여 아래 명령어를 실행한다.
+1. ssh 로 EC2 인스턴스에 로그인하여 아래 명령어를 실행한다.
 ```
 echo 'source /opt/pytorch/bin/activate' >> ~/.bashrc
 
@@ -130,6 +126,10 @@ pip install ipykernel
 python -m ipykernel install --user --name pytorch --display-name "Python (pytorch)"
 jupyter kernelspec list
 ``` 
+
+2. VS Code 에서 `Ctrl+Shift+P → "Remote-SSH: Connect to Host" → gpu-dev 선택 → continue 선택`
+   
+![](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/images/vscode-remote-ssh.png)
 
 3. `VS Code에서 Jupyter 확장 설치`: 
    Extensions 탭 → "Jupyter" 검색 → Install in SSH
