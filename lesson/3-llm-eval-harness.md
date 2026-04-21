@@ -199,6 +199,30 @@ EOF
 ```
 bash eval-all.sh
 ```
+[결과]
+```
+=== [20:14:51] Qwen/Qwen2.5-7B-Instruct ===
+deployment.apps/vllm-eval created
+service/vllm-eval created
+Waiting for deployment "vllm-eval" rollout to finish: 0 of 1 updated replicas are available...
+deployment "vllm-eval" successfully rolled out
+2026-04-21:20:19:06 INFO     [_cli.run:376] Selected Tasks: ['mmlu', 'arc_challenge', 'hellaswag']
+2026-04-21:20:19:06 WARNING  [evaluator:181] pretrained=None appears to be an instruct or chat variant but chat template is not applied. Recommend setting `apply_chat_template`
+        (optionally `fewshot_as_multiturn`).
+2026-04-21:20:19:06 INFO     [evaluator:211] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-04-21:20:19:06 INFO     [evaluator:236] Initializing local-chat-completions model, with arguments: {'model': 'Qwen/Qwen2.5-7B-Instruct', 'base_url': 'http://localhost:8000/v1/chat/completions'}
+2026-04-21:20:19:06 INFO     [models.api_models:172] Using max length 2048 - 1
+2026-04-21:20:19:06 INFO     [models.api_models:175] Concurrent requests are disabled. To enable concurrent requests, set `num_concurrent` > 1.
+2026-04-21:20:19:06 INFO     [models.api_models:193] Using tokenizer None
+README.md: 53.2kB [00:00, 11.3MB/s]
+dataset_infos.json: 138kB [00:00, 36.5MB/s]
+world_religions/test-00000-of-00001.parq(…): 100%|███████████████████████████████████████████████████████████████████████| 18.9k/18.9k [00:01<00:00, 18.7kB/s]
+world_religions/validation-00000-of-0000(…): 100%|███████████████████████████████████████████████████████████████████████| 4.94k/4.94k [00:00<00:00, 12.2kB/s]
+world_religions/dev-00000-of-00001.parqu(…): 100%|███████████████████████████████████████████████████████████████████████| 3.30k/3.30k [00:00<00:00, 8.14kB/s]
+Generating test split: 100%|██████████████████████████████████████████████████████████████████████████████████████| 171/171 [00:00<00:00, 48497.26 examples/s]
+...
+```
+
 
 > [!TIP]
 > vllm-eval 파드 로그 확인:  
