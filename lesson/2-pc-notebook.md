@@ -117,7 +117,7 @@ Host gpu-dev
   IdentityFile <KeyFile Path>
 ```
 
-1. `Ctrl+Shift+P → "Remote-SSH: Connect to Host" → gpu-dev 선택`
+1. `Ctrl+Shift+P → "Remote-SSH: Connect to Host" → gpu-dev 선택 → continue 선택`
 
 2. `VS Code에서 Jupyter 확장 설치`: 
    Extensions 탭 → "Jupyter" 검색 → Install in SSH
