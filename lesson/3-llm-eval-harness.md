@@ -361,6 +361,11 @@ PPL도 loglikelihood에서 파생된 지표
 이걸 얻으려면 /v1/completions (with logprobs) 써야 함
 ```
 
+## 오픈 LLM 리더보드 ##
+
+* https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard#/
+* https://huggingface.co/Qwen/Qwen2.5-7B-Instruct → 카드에 벤치마크 섹션
+
 
 ## 레퍼런스 ##
 
