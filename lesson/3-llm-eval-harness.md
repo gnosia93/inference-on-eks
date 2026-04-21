@@ -170,12 +170,19 @@ run_eval() {
 
   # 4. lm-eval-harness 실행 (localhost로)
   # 4-a. 지식/추론 벤치 (chat completions)
+  #lm_eval \
+  #  --model local-chat-completions \
+  #  --model_args "model=${model},base_url=http://localhost:8000/v1/chat/completions" \
+  #  --tasks mmlu,arc_challenge,hellaswag \
+  #  --output_path "results/${name}"
+
+  # 4-a 수정안 (mmlu,arc_challenge,hellaswag)도 사실 loglikelihood 기반 태스크 -> local-completions 사용)
   lm_eval \
-    --model local-chat-completions \
-    --model_args "model=${model},base_url=http://localhost:8000/v1/chat/completions" \
+    --model local-completions \
+    --model_args "model=${model},base_url=http://localhost:8000/v1/completions,tokenizer_backend=huggingface,tokenized_requests=False" \
     --tasks mmlu,arc_challenge,hellaswag \
     --output_path "results/${name}"
-  
+
   # 4-b. 언어 모델링 (completions + logprobs)
   lm_eval \
     --model local-completions \
