@@ -70,7 +70,7 @@ _Drawn using Nano Banana 2.0 with a rough prompt, Not perfect but it's amazing !
    - [KEDA 기반 오토 스케일링](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/10-keda-autoscaling.md)
    
 * [L11. 멀티노드 인퍼런스 구성 및 최적화](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/11-multi-node-inference.md)
-   - [LWS](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/11-LeaderWorkerSet.md)
+   - [LeaderWorkerSet](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/11-LeaderWorkerSet.md)
    - KubeRay
      
 * [L12. Post Training](https://github.com/gnosia93/eks-agentic-ai/blob/main/lesson/12-post-training.md)
