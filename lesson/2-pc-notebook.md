@@ -138,9 +138,8 @@ jupyter kernelspec list
    Ctrl+Shift+P → "Create: New Jupyter Notebook"
  
 4. `커널 선택`: 
-   우측 상단 "Detecting Kernels" → 
-   → "Python Environments" → gpu-dev (~/gpu-dev/bin/python)
-
+   우측 상단 "Detecting Kernels" → Jupyter Kernel... → Python (pytorch) (Python 3.12.10) 선택
+ 
 5. `GPU 및 CUDA 버전 등을 확인` 
 
 ![](https://github.com/gnosia93/agentic-ai-eks/blob/main/lesson/images/vscode-jupyter-2.png)
