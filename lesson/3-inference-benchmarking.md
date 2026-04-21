@@ -21,3 +21,7 @@ python benchmarks/benchmark_serving.py \
   --num-prompts 100 \
   --request-rate 10
 ```
+
+### 전용 벤치마크 도구 ###
+* GenAI-Perf (NVIDIA): https://github.com/triton-inference-server/perf_analyzer
+* llmperf (Anyscale): https://github.com/ray-project/llmperf
