@@ -298,6 +298,59 @@ GPTQ, AWQ, SmoothQuant 같은 논문들은 거의 항상 아래의 조합을 사
 > 데이터셋 오염(contamination) 이슈 때문에 최근 모델은 WikiText 같은 공개 코퍼스의 PPL이 비정상적으로 낮게 나올 수 있어 해석할 때 주의가 필요하다.
 
 
+### 참고 - loglikelihood ###
+```
+한 줄 정의: "모델이 이 문장을 생성할 확률"에 로그를 씌운 값.
+
+왜 로그를 씌우냐
+
+언어모델은 토큰 하나씩 확률을 곱해서 문장 전체 확률을 계산한다:
+
+P("I love cats") = P("I") × P("love"|"I") × P("cats"|"I love")
+                 = 0.01 × 0.02 × 0.005
+                 = 0.000001
+근데 문장이 길어지면 확률이 천문학적으로 작아지게 된다. 0.0001 × 0.0001 × ... 이러다 컴퓨터 부동소수점 한계에 걸려서 아예 0이 되어 버린다.(underflow).
+
+그래서 로그를 씌워서 곱셈을 덧셈으로 바꾸게 된다:
+
+log P("I love cats") = log P("I") + log P("love"|"I") + log P("cats"|"I love")
+                     = -4.6 + -3.9 + -5.3
+                     = -13.8
+확률은 0~1 사이라 log를 씌우면 항상 음수고, 값이 클수록(0에 가까울수록) 모델이 그 문장을 더 자연스럽게 여긴다는 뜻이다.
+
+
+객관식 문제(MMLU, ARC, HellaSwag)를 푸는 방식에서 모델한테 직접 "답이 뭐야?"라고 묻는 게 아니라, 각 선택지의 loglikelihood를 비교하게 된다.
+
+예: "프랑스의 수도는?" 라는 질문에 선택지가 A) 런던 B) 파리 C) 베를린 D) 로마라고 치면
+
+모델한테 네 번 물어보게 되는데:
+
+"프랑스의 수도는? 답: 런던" → logP = -12.3
+"프랑스의 수도는? 답: 파리" → logP = -3.1 ← 가장 큼
+"프랑스의 수도는? 답: 베를린" → logP = -15.7
+"프랑스의 수도는? 답: 로마" → logP = -14.2
+loglikelihood가 가장 큰 걸 모델의 답으로 간주한다. 여기서는 "파리"를 선택하게 된다. 왜 이렇게 하냐면:
+
+모델이 "답은 B"라고 대답하게 하면, 숫자 표기법이나 포맷에 따라 편차가 큼
+직접 생성시키면 이상한 답변이 나올 수도 있음 ("잘 모르겠어요")
+logP 비교는 모델의 확률분포 자체를 직접 보는 거라 결정적이고 안정적
+
+Perplexity와의 관계
+
+WikiText 같은 데서 재는 Perplexity도 loglikelihood 기반이다.
+
+Perplexity = exp(-평균 loglikelihood per token)
+PPL이 낮다 = loglikelihood가 크다 = 모델이 그 텍스트를 자연스럽게 여긴다.
+
+정리하면:
+
+loglikelihood = 모델이 특정 텍스트에 매기는 "자연스러움 점수" (로그 확률)
+객관식 평가는 선택지별 loglikelihood 비교로 답 결정
+PPL도 loglikelihood에서 파생된 지표
+이걸 얻으려면 /v1/completions (with logprobs) 써야 함
+```
+
+
 ## 레퍼런스 ##
 
 * https://artificialanalysis.ai/leaderboards/models
