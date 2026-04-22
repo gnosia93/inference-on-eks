@@ -123,7 +123,7 @@ EOF
 ```
 눈여겨 볼점은 리더와 워커의 `명령어셋이 다르다는 점`으로, 리더는 Ray 클러스터를 시작하고 vLLM 서버를 띄우고, 워커는 리더가 띄운 Ray에 조인만 한다.
 
-#### 조회하기 ####
+### 조회하기 ###
 ```
 kubectl get lws vllm-llama-405b -n llm-serving
 # NAME              READY   AGE
@@ -134,6 +134,9 @@ kubectl get pods -n llm-serving -l leaderworkerset.sigs.k8s.io/name=vllm-llama-4
 # vllm-llama-405b-0-1       1/1   Running   (worker)
 ```
 
+### 테스트 하기 ###
+```
+```
 
 ## 마치며 ##
 LWS는 "대형 LLM 분산 추론을 선언적으로 표현하고 싶다"는 요구에서 출발해, 기존 StatefulSet + Service + Init Container 조합으로 어거지로 만들던 구성을 간결하게 바꿀 수 있다. 특히 vLLM 커뮤니티가 LWS를 표준 배포 방식으로 밀고 있어서, 생태계 호환성 측면에서도 이점이 있다.
