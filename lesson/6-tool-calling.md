@@ -63,7 +63,6 @@ graph_builder.add_node("tools", ToolNode(tools))
 
 graph_builder.add_edge(START, "chatbot")
 graph_builder.add_conditional_edges("chatbot", tools_condition)
-graph_builder.add_edge("tools", "chatbot")
 graph_builder.add_edge("chatbot", END)
 
 graph = graph_builder.compile()
@@ -77,3 +76,12 @@ if __name__ == "__main__":
         msg.pretty_print()
 EOF
 ```
+[코드 설명]
+```
+graph_builder.add_conditional_edges("chatbot", tools_condition)
+```
+* chatbot 노드 실행 후 다음 행선지를 조건부로 결정합니다.
+* tools_condition은 LangGraph가 제공하는 헬퍼인데, 마지막 메시지(AIMessage)를 보고:
+* tool_calls가 있으면 → "tools" 노드로
+* 없으면 → END로 
+
