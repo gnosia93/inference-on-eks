@@ -114,7 +114,7 @@ spec:
       spec:
         terminationGracePeriodSeconds: 120       # 파드를 종료할 때 얼마나 기다려줄지를 초 단위로 지정합니다. 여기선 120초 (2분).
         nodeSelector:
-          node.kubernetes.io/instance-type: p5.48xlarge
+          node.kubernetes.io/instance-type: g7e.48xlarge
         containers:
           - name: vllm-leader
             image: vllm/vllm-openai:v0.6.3
