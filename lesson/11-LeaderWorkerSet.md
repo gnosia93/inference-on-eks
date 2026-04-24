@@ -142,9 +142,9 @@ spec:
             resources:
               limits:
                 nvidia.com/gpu: 8
-                vpc.amazonaws.com/efa: 32
-                memory: 1000Gi
-                cpu: "48"
+ #               vpc.amazonaws.com/efa: 32
+ #               memory: 1000Gi
+ #               cpu: "48"
             ports:
               - containerPort: 8000
             livenessProbe:
@@ -196,9 +196,9 @@ spec:
             resources:
               limits:
                 nvidia.com/gpu: 8
-                vpc.amazonaws.com/efa: 32
-                memory: 1000Gi
-                cpu: "48"
+#                vpc.amazonaws.com/efa: 32
+#                memory: 1000Gi
+#                cpu: "48"
             volumeMounts:
               - name: dshm
                 mountPath: /dev/shm
