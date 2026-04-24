@@ -103,7 +103,7 @@ spec:
     type: RollingUpdate
     rollingUpdateConfiguration:
       maxUnavailable: 0
-      maxSurge: 1
+      maxSurge: 1                      # 업데이트 중에 replicas를 초과해서 임시로 추가 생성할 수 있는 그룹의 최대 개수
   leaderWorkerTemplate:
     size: 2
     restartPolicy: RecreateGroupOnPodRestart
