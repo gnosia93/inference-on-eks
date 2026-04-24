@@ -215,17 +215,16 @@ EOF
 
 ### 조회하기 ###
 ```
-kubectl get lws vllm-llama-405b -n llm-serving
-# NAME              READY   AGE
-# vllm-llama-405b   1/1     5m
 
-kubectl get pods -n llm-serving -l leaderworkerset.sigs.k8s.io/name=vllm-llama-405b
-# vllm-llama-405b-0         1/1   Running   (leader)
-# vllm-llama-405b-0-1       1/1   Running   (worker)
+
+
 ```
 
 ### 테스트 하기 ###
 ```
+
+
+
 ```
 
 ## 마치며 ##
