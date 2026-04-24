@@ -74,6 +74,16 @@ resource "aws_fsx_lustre_file_system" "llama_cache" {
     mode = "AUTOMATIC"   # 또는 USER_PROVISIONED
   }
 
+  # mode = "AUTOMATIC" (추천)
+  # FSx가 용량에 맞춰 메타데이터 IOPS 자동 설정
+  # 설정 간단
+  # 대부분의 경우 이거면 충분
+  #
+  # mode = "USER_PROVISIONED"
+  # 메타데이터 IOPS 직접 지정
+  # iops = 1500 같은 값 필요 (1500, 3000, 6000, 12000, 24000, 48000, 96000, 192000)
+  # 메타데이터 집약 워크로드에서 성능 튜닝 가능
+
   tags = {
     Name    = "eai-fsx"
     Cluster = "eks-agentic-ai"
