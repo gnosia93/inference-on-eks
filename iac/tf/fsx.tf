@@ -65,6 +65,11 @@ resource "aws_fsx_lustre_file_system" "llama_cache" {
   efa_enabled                     = true
   automatic_backup_retention_days = 0
 
+  # EFA 켜면 metadata_configuration 필수
+  metadata_configuration {
+    mode = "AUTOMATIC"   # 또는 USER_PROVISIONED
+  }
+
   tags = {
     Name    = "eai-fsx"
     Cluster = "eks-agentic-ai"
