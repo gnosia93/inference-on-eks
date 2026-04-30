@@ -43,6 +43,14 @@ builder.add_edge("tools", "agent")      # 도구 실행 후 다시 LLM에게
 ```
 이 구조가 ReAct 루프다. 도구 호출이 없어질 때까지 agent ↔ tools를 오간다.
 
+> [!NOTE]
+> ReAct란 ?
+> 
+> Reasoning + Acting의 합성어로, 2022년 논문 ReAct: Synergizing Reasoning and Acting in Language Models에서 제안된 LLM 에이전트의 행동 패턴이다.   
+> "생각 → 행동 → 관찰"을 목표 달성까지 반복하는 루프로 구현한다.  
+> Thought(무엇을 할지 생각) → Action(도구 호출) → Observation(도구 결과 관찰) → Thought(결과 보고 다음 판단)  ...(목표달성때 까지 반복) → Final Answer          
+
+
 #### 2-4. Human-in-the-loop — interrupt ####
 특정 지점에서 그래프 실행을 멈추고, 외부(사람)로부터 값을 받아 재개한다.
 ```
