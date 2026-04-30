@@ -10,7 +10,9 @@
 
 ### 2. 핵심 개념 ###
 #### 2-1. 도구 — @tool 데코레이터 ####
-함수에 @tool만 붙이면 LangChain 표준 도구가 된다. LLM 은 독스트링을 보고 "언제 이 도구를 쓸지" 판단한다. 독스트링이 부실하면 LLM이 엉뚱한 도구를 고른다. ```
+함수에 @tool만 붙이면 LangChain 표준 도구가 된다. LLM 은 독스트링을 보고 "언제 이 도구를 쓸지" 판단한다. 독스트링이 부실하면 LLM이 엉뚱한 도구를 고른다. 
+
+```
 from langchain_core.tools import tool
 
 @tool
