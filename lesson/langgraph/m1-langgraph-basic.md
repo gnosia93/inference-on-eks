@@ -21,7 +21,7 @@ LangGraph는 상태 기반 그래프다. 노드는 상태를 입력받아 상태
 
 
 ### 2. 핵심 3요소 ###
-#### State — 그래프가 공유하는 기억 ####
+#### `State` — 그래프가 공유하는 기억 ####
 TypedDict나 Pydantic 모델로 정의한다. 모든 노드가 이 상태를 읽고, 부분 업데이트를 반환한다.
 ```
 from typing import TypedDict
@@ -37,10 +37,10 @@ def upper_node(state: State) -> dict:
     return {"output_text": state["input_text"].upper()}
 ```
 
-#### Edge — 노드 사이의 흐름 ####
+#### `Edge` — 노드 사이의 흐름 ####
 START → node → END로 연결한다. 조건부 엣지(M2에서 다룸)로 분기도 만들 수 있다.
 
-#### 리듀서 — 같은 키를 여러 번 업데이트할 때 ####
+#### `리듀서` — 같은 키를 여러 번 업데이트할 때 ####
 기본 동작은 덮어쓰기다. 그런데 메시지 리스트처럼 누적하고 싶은 키는 리듀서가 필요하다.
 ```
 from typing import Annotated
