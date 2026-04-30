@@ -72,20 +72,23 @@ Reason:  "이제 답변하기에 충분하다"
 
 ### [2. @tool 콜링](https://github.com/gnosia93/langgraph-agentic-ai/blob/main/lesson/6-tool-calling.md) ###
 
-### 3. 상태와 메모리 ###
+### 3. OAuth ###
+
+
+### 4. 상태와 메모리 ###
   - LangGraph State: 그래프 전체에서 공유되는 상태
   - 단기 메모리: 대화 컨텍스트 (MessagesState)
   - 장기 메모리: 사용자 프로필, 선호도 (외부 저장소)
   - 실습: 이전 대화 기억하는 에이전트
 
-### 4. 세션과 영속성 ###
+### 5. 세션과 영속성 ###
   - Checkpointer: 대화 상태 저장/복구
   - 세션 ID 관리, 타임아웃
   - 실습: Redis/Postgres 체크포인터 붙이기
 
-### [5. 관측성 (Langfuse)](https://github.com/gnosia93/langgraph-agentic-ai/blob/main/lesson/6-langfuse.md) ###
+### [6. 관측성 (Langfuse)](https://github.com/gnosia93/langgraph-agentic-ai/blob/main/lesson/6-langfuse.md) ###
 
-### [6. Open WebUI 연동](https://github.com/gnosia93/langgraph-agentic-ai/blob/main/lesson/6-llm-webui.md) ###
+### [7. Open WebUI 연동](https://github.com/gnosia93/langgraph-agentic-ai/blob/main/lesson/6-llm-webui.md) ###
  
 ### 2. RAG를 에이전트 도구로 (L5와 연결) ###
   - L5에서 만든 RAG를 @tool로 감싸기
