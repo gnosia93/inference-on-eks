@@ -134,7 +134,7 @@ python setup/preflight.py
 
 ### [1. LangGraph 기본기](https://github.com/gnosia93/lg-agentic-ai/blob/main/lesson/langgraph/m1-langgraph-basic.md) ###
 
-### [2. @tool 콜링](https://github.com/gnosia93/lg-agentic-ai/blob/main/lesson/langgraph/m2-tool-calling.md) ###
+### [2. 도구 / 조건부 라우팅 / HITL](https://github.com/gnosia93/lg-agentic-ai/blob/main/lesson/langgraph/m2-tool-calling.md) ###
 
 ### 3. OAuth ###
 
